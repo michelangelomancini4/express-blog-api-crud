@@ -1,6 +1,9 @@
 const express = require ('express')
 const router = express.Router();
 
+// importo il controller
+const postsController = require('../controllers/menucontroller');
+
 // rotte per le operazioni CRUD (Index, Show, Create, Update e Delete)
 
    // index
