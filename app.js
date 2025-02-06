@@ -11,6 +11,11 @@ const app = express()
 const menu = require('./data/postsarray');
 
 
+// const router = express.Router();
+
+// router.get('/', function (req, res) {
+//     res.json(menu); 
+//     });
 
 // Importazione routers/posts.js
 const postsRouter = require('./routers/posts');
