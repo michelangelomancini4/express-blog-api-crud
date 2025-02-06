@@ -7,12 +7,17 @@ const menu = require('../data/postsarray');
 
 function index(req, res) {
 // copiamo la logica dell'index
-res.send('lista dei post')
+res.json(menu)
 
 }
 function show(req, res) {
 // copiamo la logica della show
-res.send(`mostra dettagli ${req.params.id}`)
+const id = parseInt(req.params.id)
+
+// cerchiamo il piatto tramite id
+const piatto = menu.find(piatto => piatto.id === id);
+// Restituiamolo sotto forma di JSON
+res.json(piatto);
 
 }
 function store(req, res) {
