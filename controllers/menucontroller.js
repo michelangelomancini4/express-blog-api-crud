@@ -1,17 +1,14 @@
-// prepariamo tutte le funzioni necessarie 
-// copiamo in ciascuna la logica delle funzioni che attualmente si trovano nel router (al momento restituiscono solo dei messaggi).
-
-// importo menu
+// importazione menu
 const menu = require('../data/postsarray'); 
 
 
 function index(req, res) {
-// copiamo la logica dell'index
+// logica index
 res.json(menu)
 
 }
 function show(req, res) {
-// copiamo la logica della show
+// logica  show
 const id = parseInt(req.params.id)
 
 // cerchiamo il piatto tramite id
@@ -21,21 +18,37 @@ res.json(piatto);
 
 }
 function store(req, res) {
-// copiamo la logica della store
+// logica  store
 res.send(`crea/aggiungi ${req.params}`)
 
 }
 function update(req, res) {
-// copiamo la logica dell'update
+//  logica update
 res.send(`modifica ${req.params.id}`);
 
 }
 function destroy(req, res) {
-// copiamo la logica della destroy..
-res.send(`cancella ${req.params.id}`);
+// logica  destroy
+const id = parseInt(req.params.id)
+
+// cerchiamo il piatto tramite id
+const piatto = menu.find(piatto => piatto.id === id);
+
+// Facciamo il controllo
+    if(!piatto){
+        //Imposto lo status 404
+        res.status(404)
+        // Restituisco un JSON con le altre informazioni
+    return res.json({
+        error: "Non Trovato",
+        message: "Piatto non trovato"
+        })
+        }
+ res.json(piatto);
 
 }
+
 // esportiamo tutto
 module.exports = { index, show, store, update, destroy }
 
-console.log('ciao');
+
