@@ -1,4 +1,5 @@
 // importazione menu
+const { json } = require('express');
 const menu = require('../data/postsarray'); 
 
 // logica INDEX
@@ -49,16 +50,50 @@ function store(req, res) {
 //  logica UPDATE
 function update(req, res) {
 
-res.send(`modifica integrale ${req.params.id}`);
+
+// conversione ID da stringa a numero con parseInt
+const id = parseInt(req.params.id);
+
+// recupero dati da req.body
+const datiPiatti = req.body;
+
+// cerchiamo il piatto tramite id
+const piatto = menu.find(piatto => piatto.id === id);
+
+// Facciamo il controllo
+if(!piatto){
+    //Imposto lo status 404
+    res.status(404)
+    // Restituisco un JSON con le altre informazioni
+return res.json({
+    error: "Non Trovato",
+    message: "Piatto non trovato"
+    })
+    }
+
+ //modifichiamo i dati del piatto
+ 
+ piatto.title = req.body.title;
+ piatto.content = req.body.content;
+ piatto.image = req.body.image;
+ piatto.tags = req.body.tags;
+
+//  stampo in console per controllare che i dati siano aggiornati
+console.log(menu);
+
+
+//  ritorniamo il piatto aggiornato
+res.json(piatto);
 
 }
 
 // logica  DESTROY
 function destroy(req, res) {
 
+// conversione ID da stringa a numero con parseInt
 const id = parseInt(req.params.id)
 
-    // cerchiamo il piatto tramite id
+ // cerchiamo il piatto tramite id
 const piatto = menu.find(piatto => piatto.id === id);
 
     // Facciamo il controllo

@@ -6,21 +6,21 @@ const postsController = require('../controllers/menucontroller');
 
 // rotte per le operazioni CRUD (Index, Show, store, Create, Update e Delete)
 
-   // index
+   // INDEX
   router.get('/', postsController.index) ;
 
-   // show
+   // SHOW
    router.get('/:id', postsController.show) ;
 
   
-   // store
+   // STORE
    router.post('/', postsController.store) ;
 
 
-  // update
+  // UPDATE
   router.put('/:id', postsController.update) ;
 
-  // destroy
+  // DESTROY
   router.delete('/:id', postsController.destroy) ;
 
 

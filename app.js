@@ -13,7 +13,7 @@ const menu = require('./data/postsarray');
 // registrazione body-parser
 app.use(express.json());
 
-
+// lettura dati inviati
 app.post('/', (req, res) => {
   console.log(req.body);
   
@@ -30,11 +30,9 @@ app.use('/posts', postsRouter);
 const port = 5000
 
 
-
-  // configurazione asset statico
+ // configurazione asset statico
   app.use(express.static('public'));
 
-  
 
 // impostazione rotta principale
 app.get('/', (req, res) => {
@@ -45,7 +43,6 @@ res.send('Server del tuo blog!!!')
 app.get("/bacheca", (req, res) => {
     res.json(menu);
   });
-
 
 
 // avvio server mettendolo in ascolto sulla porta indicata
