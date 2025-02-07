@@ -4,7 +4,7 @@ const router = express.Router();
 // importo il controller
 const postsController = require('../controllers/menucontroller');
 
-// rotte per le operazioni CRUD (Index, Show, Create, Update e Delete)
+// rotte per le operazioni CRUD (Index, Show, store, Create, Update e Delete)
 
    // index
   router.get('/', postsController.index) ;
@@ -12,16 +12,18 @@ const postsController = require('../controllers/menucontroller');
    // show
    router.get('/:id', postsController.show) ;
 
-
-   // create
-   router.patch('/', postsController.store) ;
+  
+   // store
+   router.post('/', postsController.store) ;
 
 
   // update
   router.put('/:id', postsController.update) ;
 
 
-  // delete
+
+  
+  // destroy
   router.delete('/:id', postsController.destroy) ;
 
 

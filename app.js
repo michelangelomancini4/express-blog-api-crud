@@ -10,12 +10,14 @@ const app = express()
 // importo array con menu
 const menu = require('./data/postsarray');
 
+// registrazione body-parser
+app.use(express.json());
 
-// const router = express.Router();
 
-// router.get('/', function (req, res) {
-//     res.json(menu); 
-//     });
+app.post('/', (req, res) => {
+  console.log(req.body);
+  
+  })
 
 // Importazione routers/posts.js
 const postsRouter = require('./routers/posts');
@@ -26,6 +28,8 @@ app.use('/posts', postsRouter);
 
 // impostazione porta
 const port = 5000
+
+
 
   // configurazione asset statico
   app.use(express.static('public'));

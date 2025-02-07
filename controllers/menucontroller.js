@@ -17,16 +17,24 @@ const piatto = menu.find(piatto => piatto.id === id);
 res.json(piatto);
 
 }
-function store(req, res) {
+
 // logica  store
-res.send(`crea/aggiungi ${req.params}`)
+function store(req, res) {
+
+console.log(req.body);
+res.send('crea/aggiungi ')
 
 }
+
+
+
 function update(req, res) {
 //  logica update
-res.send(`modifica ${req.params.id}`);
+res.send(`modifica integrale ${req.params.id}`);
 
 }
+
+
 function destroy(req, res) {
 // logica  destroy
 const id = parseInt(req.params.id)
