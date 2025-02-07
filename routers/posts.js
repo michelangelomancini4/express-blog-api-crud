@@ -20,9 +20,6 @@ const postsController = require('../controllers/menucontroller');
   // update
   router.put('/:id', postsController.update) ;
 
-
-
-  
   // destroy
   router.delete('/:id', postsController.destroy) ;
 

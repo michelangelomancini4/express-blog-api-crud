@@ -1,14 +1,15 @@
 // importazione menu
 const menu = require('../data/postsarray'); 
 
-
+// logica INDEX
 function index(req, res) {
-// logica index
-res.json(menu)
 
+res.json(menu)
 }
+
+// logica  SHOW
 function show(req, res) {
-// logica  show
+
 const id = parseInt(req.params.id)
 
 // cerchiamo il piatto tramite id
@@ -18,31 +19,49 @@ res.json(piatto);
 
 }
 
-// logica  store
+// logica  STORE
 function store(req, res) {
 
-console.log(req.body);
-res.send('crea/aggiungi ')
+
+    // Creiamo un nuovo id 
+    const newId = menu[menu.length - 1].id + 1;
+
+    // Creiamo un nuovo piatto estrapolando i dati di req.body
+    const nuovoPiatto= {
+    id: newId,
+    name: req.body.title,
+    image: req.body.image,
+    ingredients: req.body.tags
+    }
+    // Aggiungiamo il nuovo piatto al menu
+    menu.push(nuovoPiatto);
+
+    // controlliamo nel terminale
+    console.log("menu aggiornato:", menu);
+
+    // Restituiamo lo status corretto e il piatto nuovo
+    res.status(201);
+    res.json(nuovoPiatto);
 
 }
 
 
-
+//  logica UPDATE
 function update(req, res) {
-//  logica update
+
 res.send(`modifica integrale ${req.params.id}`);
 
 }
 
-
+// logica  DESTROY
 function destroy(req, res) {
-// logica  destroy
+
 const id = parseInt(req.params.id)
 
-// cerchiamo il piatto tramite id
+    // cerchiamo il piatto tramite id
 const piatto = menu.find(piatto => piatto.id === id);
 
-// Facciamo il controllo
+    // Facciamo il controllo
     if(!piatto){
         //Imposto lo status 404
         res.status(404)
