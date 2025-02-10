@@ -10,6 +10,11 @@ const app = express()
 // importo array con menu
 const menu = require('./data/postsarray');
 
+// importo il middleware 
+const checkInexistentEndpoint = require('./middlewares/inexistentEndpoint');
+
+
+
 // registrazione body-parser
 app.use(express.json());
 
@@ -21,6 +26,8 @@ app.post('/', (req, res) => {
 
 // Importazione routers/posts.js
 const postsRouter = require('./routers/posts');
+
+
 
 
 //registrazione path delle rotte e istanza router
@@ -50,6 +57,7 @@ app.listen(port, () => {
 console.log(`Server in ascolto sulla porta: ${port}`)
 })
 
-
+// uso middleware
+app.use(checkInexistentEndpoint);
 
 
